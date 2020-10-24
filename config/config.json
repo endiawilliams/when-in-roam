@@ -5,12 +5,12 @@
     "dialect": "postgres"
   },
   "test": {
-    "database": "express_auth_test",
+    "database": "when_in_roam_test",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "production": {
-    "database": "express_auth_production",
+    "database": "when_in_roam_production",
     "host": "127.0.0.1",
     "dialect": "postgres"
   }
