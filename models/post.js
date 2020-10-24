@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     locationId: DataTypes.INTEGER,
     siteId: DataTypes.INTEGER,
     content: DataTypes.TEXT,
-    date: DataTypes.INTEGER,
+    date: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'post',
