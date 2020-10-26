@@ -19,23 +19,17 @@ router.get('/about', (req, res) => {
 // GET region (COMPLETE? need toUpperCase all regions)
 router.get('/region/:name', (req, res) => {
     let currentRegion = req.params.name;
-    let selectedRegion = currentRegion.charAt(0).toUpperCase()+currentRegion.slice(1);    
+    let selectedRegion = currentRegion.charAt(0).toUpperCase()+currentRegion.slice(1);
+
     if (selectedRegion === "Northamerica" || selectedRegion === "Southamerica") {
-        // let str = selectRegion.charAt(5).toUpperCase()
-        // let arr = str.split();
-        // arr.splice(5, 0, " ");
-        // selectRegion = arr.toString();
-        // console.log(selectRegion);
-        let newRegion = selectedRegion.replace("america", " America");
-        console.log(newRegion);
+        selectedRegion = selectedRegion.replace("america", " America");
     } 
     db.location.findAll({
         where: {
             region: selectedRegion
         }
     }).then(function(foundRegion) {
-        console.log(foundRegion);
-        res.render('region', {region:currentRegion});
+        res.render('region', {region: foundRegion});
     })
 })
 
@@ -72,17 +66,17 @@ router.get('/city/:id', (req, res) => {
 // // // GET site
 // //     // user selects specific site to see all posts
 // //     // render to site.ejs
-// router.get('/site/:id', (req, res) => {
-//     let currentSite = req.params.id;
-//     db.site.findOne({
-//         where: {
-//             locationId: currentSite
-//         }
-//     }).then(function(foundSite) {
-//         console.log(foundSite);
-//         res.render('site');
-//     })
-// });
+router.get('/site/:id', (req, res) => {
+    let currentSite = req.params.id;
+    db.site.findOne({
+        where: {
+            locationId: currentSite
+        }
+    }).then(function(foundSite) {
+        console.log(foundSite);
+        res.render('site');
+    })
+});
 
 
 // // GET profile (COMPLETE? Need testing)
