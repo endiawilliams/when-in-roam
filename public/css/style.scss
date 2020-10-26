@@ -1,3 +1,7 @@
+//framework
+// @import 'custom-settings';
+@import '../../node_modules/sierra-library/lib/index.scss';
+
 //color theme veriables
 $bkgd : #FAFEFF;
 $ltblue: #E0FAFF;
@@ -8,6 +12,10 @@ $drkbrown: #B39479;
 body {
     background-color: $bkgd;
     font-family: sans-serif;
+}
+
+.nav{
+  display: flex;
 }
 
 h1 {
