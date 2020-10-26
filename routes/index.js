@@ -63,9 +63,10 @@ router.get('/city/:id', (req, res) => {
 // });
 
 
-// // // GET site
-// //     // user selects specific site to see all posts
-// //     // render to site.ejs
+
+// GET site
+    // user selects specific site to see all posts
+    // render to site.ejs
 router.get('/site/:id', (req, res) => {
     let currentSite = req.params.id;
     db.site.findOne({
@@ -74,55 +75,64 @@ router.get('/site/:id', (req, res) => {
         }
     }).then(function(foundSite) {
         console.log(foundSite);
-        res.render('site');
+        res.render('site', {site: foundSite});
     })
 });
 
 
-// // GET profile (COMPLETE? Need testing)
-//     // returns all current user posts
-//     // render to profile.ejs
-// router.get('/profile/:name', (req, res) => {
-//     // search user db to find One and return to foundUser
-//     db.user.findOne().then(function(foundUser) {
-//         // use foundUser to search Post using req.body.userId?
-//         foundUser.getPost({
-//             userId: req.body.userId
-//         // then using selected userId, return all Post
-//         }).then(function(allPost) {
-//             // return allPost
-//             console.log(allPost);
-//             console.log(allPost.dataValues);
-//             // render to profile.ejs
-//             res.render('profile');
-//         })
-//     })
-// });
+// GET profile (COMPLETE? Need testing)
+    // returns all current user posts
+    // render to profile.ejs
+router.get('/profile/:username', (req, res) => {
+    db.user.findOne({
+        where: {
+            name: req.params.username
+        }
+    }).then(function(foundUser) {
+        db.post.findAll({
+            where: {
+                userId: foundUser.dataValues.id
+            }
+        }).then(function(allPosts) {
+            console.log(allPosts);
+            res.render('profile', {posts: allPosts});
+        })
+    })
+});
 
 
-// // GET post
-//     // returns user to edit page from profile or post page
-//     // find postId
-//     // render to edit.ejs
-// router.get('/post/:id', (req, res) => {
-//     res.render('edit');
-// });
+// GET post  (COMPLETE? Need testing)
+    // returns user to edit page from profile or post page
+    // find postId
+    // render to edit.ejs
+router.get('/post/:id', (req, res) => {
+    db.post.findOne({
+        where: {
+            id: req.params.id
+        }
+    }).then(function(foundPost) {
+        console.log(foundPost);
+        res.render('post', {post: foundPost});
+    })
+});
 
 
-// // POST post
-//     // user submits post and/or edits on a post
-//     // find user name && postId
-//     // render to post.ejs
-// router.post('/post/:id', (req, res) => {
-//     res.render('post');
-// });
+// POST post  (COMPLETE? Need testing)
+    // user submits post and/or edits on a post
+    // render to post.ejs
+router.post('/post/:id', (req, res) => {
+    db.post.create(req.body).then(newPost => {
+        console.log(newPost);
+        res.render('post', {newPost: newPost});
+    })
+});
 
 
-// GET post 
+// GET new 
     // user goes to form page to create a new post
     // render to create.ejs
-router.get('/create', (req, res) => {
-    res.render('create');
+router.get('/new', (req, res) => {
+    res.render('new');
 });
 
 
