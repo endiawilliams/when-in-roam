@@ -72,17 +72,17 @@ router.get('/city/:id', (req, res) => {
 // // // GET site
 // //     // user selects specific site to see all posts
 // //     // render to site.ejs
-// router.get('/site/:id', (req, res) => {
-//     let currentSite = req.params.id;
-//     db.site.findOne({
-//         where: {
-//             locationId: currentSite
-//         }
-//     }).then(function(foundSite) {
-//         console.log(foundSite);
-//         res.render('site');
-//     })
-// });
+router.get('/site/:id', (req, res) => {
+    let currentSite = req.params.id;
+    db.site.findOne({
+        where: {
+            locationId: currentSite
+        }
+    }).then(function(foundSite) {
+        console.log(foundSite);
+        res.render('site');
+    })
+});
 
 
 // // GET profile (COMPLETE? Need testing)
