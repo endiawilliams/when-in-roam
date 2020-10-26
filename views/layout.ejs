@@ -11,6 +11,12 @@
       <nav>
         <ul>
           <li><a href="/about">About</a></li>
+          <li><a href="/region">Region</a></li>
+          <li><a href="/city">City</a></li>
+          <li><a href="/site">Site</a></li>
+          <li><a href="/edit">Edit</a></li>
+          <li><a href="/index">Homepage</a></li>
+          <li><a href="/profile">Profile</a></li>
           <% if (!currentUser) { %>
             <li><a href="/auth/signup">Signup</a></li>
             <li><a href="/auth/login">Login</a></li>
@@ -18,6 +24,7 @@
             <li><a href="/auth/logout">Logout</a></li>
             <li><a href="/profile">Profile</a></li>
             <li><a href="/post">Posts</a></li>
+            <li><a href="/create">Create Post</a></li>
           <% } %>
         </ul>
       </nav>
