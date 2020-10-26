@@ -1,0 +1,19 @@
+//color theme veriables
+$bkgd : #FAFEFF;
+$ltblue: #E0FAFF;
+$drkblue: #8BACB3;
+$ltbrown: #FFEFE0;
+$drkbrown: #B39479;
+
+body {
+    background-color: $bkgd;
+    font-family: sans-serif;
+}
+
+h1 {
+    color: $drkblue;
+}
+
+h2 {
+    color: $drkbrown;
+}

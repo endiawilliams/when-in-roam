@@ -1,19 +1,13 @@
-* { 
-  background-color:oldlace;
+* {
+  background-color: #FAFEFF;
   font-family: sans-serif;
-  font-weight: lighter;
-}
-
-nav ul li {
-  text-decoration: none;
-  display: inline-block;
-  margin-right: .3em;
 }
 
 h1 {
-  color: cadetblue;
+  color: #8BACB3;
 }
 
 h2 {
-  color: mediumpurple;
+  color: #B39479;
 }
+/*# sourceMappingURL=style.css.map */
