@@ -3,19 +3,29 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Authentication</title>
+    <title>✧When In Roam✧</title>
     <link rel="stylesheet" href="/css/style.css">
   </head>
   <body>
     <header>
       <nav>
         <ul>
+          <li><a href="/about">About</a></li>
+          <!-- <li><a href="/region">Region</a></li>
+          <li><a href="/city">City</a></li>
+          <li><a href="/site">Site</a></li>
+          <li><a href="/create">Create</a></li>
+          <li><a href="/edit">Edit</a></li>
+          <li><a href="/index">Homepage</a></li>
+          <li><a href="/profile">Profile</a></li> -->
           <% if (!currentUser) { %>
             <li><a href="/auth/signup">Signup</a></li>
             <li><a href="/auth/login">Login</a></li>
           <% } else { %>
             <li><a href="/auth/logout">Logout</a></li>
             <li><a href="/profile">Profile</a></li>
+            <li><a href="/post">Posts</a></li>
+            <li><a href="/create">Create Post</a></li>
           <% } %>
         </ul>
       </nav>
