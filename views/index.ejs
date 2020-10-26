@@ -1,2 +1,33 @@
-<h2>this is the index page.</h2>
+<h1>this is the index page.</h1>
 <h3>we start here</h3>
+
+<!-- Sign Up/Log In buttons that immediately display on the page if the user is not logged in. -->
+<form action="">
+    <button>Sign Up</button>
+    <button>Log In</button>
+</form>
+
+<!-- Log In form that is not immediately visible but appears if the user clicks the "Log In" button. -->
+<form action="/auth/login" method="POST">
+    <label for="auth-email">email</label>
+    <input id="auth-email" type="email" name="email">
+  
+    <label for="auth-password">password</label>
+    <input id="auth-password" type="password" name="password">
+  
+    <button type="submit" value="Log In">Log In</button>
+</form>
+
+<!-- Sign Up form that is not immediately visible but appears if the user clicks the "Sign Up" button. -->
+<form action="/auth/signup" method="POST">
+    <label for="new-email">email</label>
+    <input id="new-email" type="email" name="email">
+  
+    <label for="new-name">name</label>
+    <input id="new-name" type="text" name="name">
+  
+    <label for="new-password">password</label>
+    <input id="new-password" type="password" name="password">
+  
+    <input type="submit" value="Sign up">
+</form>
