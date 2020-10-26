@@ -1,3 +1,9 @@
+* { 
+  background-color:oldlace;
+  font-family: sans-serif;
+  font-weight: lighter;
+}
+
 nav ul li {
   text-decoration: none;
   display: inline-block;
@@ -5,5 +11,9 @@ nav ul li {
 }
 
 h1 {
-  color: chartreuse;
+  color: cadetblue;
+}
+
+h2 {
+  color: mediumpurple;
 }
