@@ -29,7 +29,17 @@ router.get('/region/:name', (req, res) => {
             region: selectedRegion
         }
     }).then(function(foundRegion) {
-        res.render('region', {region: foundRegion});
+        let regionIds = [];
+        for (let i=0; i<foundRegion.length; i++) {
+            regionIds.push(foundRegion[i].dataValues.id);
+        }
+        db.post.findAll({
+            where: {
+                locationId: regionIds
+            }
+        }).then(function(allRegionPosts) {
+            res.render('region', {region: foundRegion, posts: allRegionPosts});
+        })
     })
 })
 
