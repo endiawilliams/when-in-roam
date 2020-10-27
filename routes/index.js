@@ -24,12 +24,28 @@ router.get('/region/:name', (req, res) => {
     if (selectedRegion === "Northamerica" || selectedRegion === "Southamerica") {
         selectedRegion = selectedRegion.replace("america", " America");
     } 
+    // first, find all entries in the location table where the
+    // region matches the URL parameter (e.g. all entries with region 'North America' on /region/northamerica)
+    // then find all entries in the post table where the locationId matches the id in the location table
+    // then pass to context object and render
     db.location.findAll({
         where: {
             region: selectedRegion
         }
     }).then(function(foundRegion) {
-        res.render('region', {region: foundRegion});
+        let regionIds = []
+
+        for (let i = 0; i < foundRegion.length; i++) {
+            regionIds.push(foundRegion[i].dataValues.id)
+        }
+
+        db.post.findAll({
+            where: {
+                locationId: regionIds
+            }
+        }).then(function(allRegionPosts) {
+            res.render('region', {region: foundRegion, posts: allRegionPosts});
+        })
     })
 })
 
