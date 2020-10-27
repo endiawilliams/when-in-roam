@@ -97,7 +97,6 @@ router.get('/site/:id', (req, res) => {
             locationId: currentSite
         }
     }).then(function(foundSite) {
-        // console.log(foundSite);
         db.post.findAll({
             where: {
                 siteId: foundSite.dataValues.id
@@ -109,7 +108,6 @@ router.get('/site/:id', (req, res) => {
                 }
             }).then(function(foundLocation) {
                 res.render('site', {site: foundSite, posts: allSitePosts, location: foundLocation});
-                console.log(foundLocation)
             })
         })
     })
@@ -119,10 +117,10 @@ router.get('/site/:id', (req, res) => {
 // GET profile (COMPLETE? Need testing)
     // returns all current user posts
     // render to profile.ejs
-router.get('/profile/:username', (req, res) => {
+router.get('/profile/:name', (req, res) => {
     db.user.findOne({
         where: {
-            name: req.params.username
+            name: req.params.name
         }
     }).then(function(foundUser) {
         db.post.findAll({
@@ -130,8 +128,29 @@ router.get('/profile/:username', (req, res) => {
                 userId: foundUser.dataValues.id
             }
         }).then(function(allPosts) {
-            console.log(allPosts);
-            res.render('profile', {user: foundUser, posts: allPosts});
+            let locationIds = []
+
+            for (let i=0; i<allPosts.length; i++) {
+                locationIds.push(allPosts[i].dataValues.locationId)
+            }
+            db.location.findAll({
+                where: {
+                    id: locationIds
+                }
+            }).then(function(foundLocations) {
+                let siteIds = []
+
+                for (let i=0; i<allPosts.length; i++) {
+                    siteIds.push(allPosts[i].dataValues.siteId)
+                }
+                db.site.findAll({
+                    where: {
+                        id: siteIds
+                    }
+                }).then(function(foundSites) {
+                    res.render('profile', {user: foundUser, posts: allPosts, locations: foundLocations, sites:foundSites});
+                })
+            })
         })
     })
 });
