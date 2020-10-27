@@ -5,10 +5,10 @@
 <div class="posts-container">
     <% for (let i=0; i<posts.length; i++) { %>
         <div class="profile-post">
-            <h4><%= post[i].title %></h4>
-            <!-- <h6><%= (site name) %></h6> -->
-            <!-- <h6><%= (location city, location country) %></h6> -->
-            <p><%= post[i].text %></p> 
+            <h6><%= sites[i].name %></h6>
+            <h6><%= locations[i].city %>, <%= locations[i].country %></h6>
+            <p><%= posts[i].date %></p> 
+            <p><%= posts[i].content %></p> 
         
             <button class="" type="submit">Edit Post</button>
             <button class="" type="delete">Delete Post</button>
