@@ -2892,10 +2892,35 @@ body {
   font-family: sans-serif;
 }
 
-.nav {
+.pageContent {
+  color: red;
+}
+
+.headNav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.button {
+  color: #8BACB3;
+}
+
+.leftNav ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 5px;
+}
+
+.rightNav ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 5px;
 }
 
 h1 {
@@ -2904,5 +2929,13 @@ h1 {
 
 h2 {
   color: #B39479;
+}
+
+.aboutBackImg {
+  position: static;
+}
+
+.aboutText {
+  position: absolute;
 }
 /*# sourceMappingURL=style.css.map */

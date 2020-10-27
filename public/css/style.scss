@@ -1,5 +1,5 @@
 //framework
-// @import 'custom-settings';
+@import 'custom-settings';
 @import '../../node_modules/sierra-library/lib/index.scss';
 
 //color theme veriables
@@ -9,13 +9,29 @@ $drkblue: #8BACB3;
 $ltbrown: #FFEFE0;
 $drkbrown: #B39479;
 
+//
 body {
     background-color: $bkgd;
     font-family: sans-serif;
 }
 
-.nav{
-  display: flex;
+
+.headNav {
+    background-color: $ltbrown;
+    display: flex;
+    justify-content: space-between;
+}
+.button{
+    color: $drkblue;
+}
+.leftNav ul {
+    display: flex;
+    margin: 5px;
+}
+
+.rightNav ul {
+    display: flex;
+    margin: 5px
 }
 
 h1 {
@@ -24,4 +40,14 @@ h1 {
 
 h2 {
     color: $drkbrown;
+}
+
+//page specific styles
+
+.aboutBackImg {
+    position: static;
+}
+
+.aboutText {
+    position: absolute;
 }
