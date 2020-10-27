@@ -2892,10 +2892,36 @@ body {
   font-family: sans-serif;
 }
 
-.nav {
+.headNav {
+  background-color: #FFEFE0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.button {
+  color: #8BACB3;
+}
+
+.leftNav ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 5px;
+}
+
+.rightNav ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 5px;
+}
+
+.navLogo {
+  margin: 5px;
 }
 
 h1 {
@@ -2904,5 +2930,19 @@ h1 {
 
 h2 {
   color: #B39479;
+}
+
+.megaAbout {
+  background-image: url("../images/undraw_trip_dv9f.svg");
+}
+
+.aboutPage {
+  text-align: center;
+}
+
+.aboutText {
+  font-size: 20px;
+  color: #B39479;
+  margin-top: 100px;
 }
 /*# sourceMappingURL=style.css.map */

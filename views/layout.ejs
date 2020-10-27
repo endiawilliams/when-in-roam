@@ -9,16 +9,21 @@
   </head>
   <body>
     <header>
-      <nav>
-        <p style="font-family: 'Pacifico', cursive;">When in Roam</p>
+      <div class="headNav">
+        <img class="navLogo" src="images/wir_logo.png" alt="logo" height="40px">
+      <nav class="leftNav">
         <ul>
-          <li><a href="/about">About</a></li>
-          <li><a href="/region">Region</a></li>
-          <li><a href="/city">City</a></li>
-          <li><a href="/site">Site</a></li>
-          <li><a href="/edit">Edit</a></li>
-          <li><a href="/index">Homepage</a></li>
-          <li><a href="/profile">Profile</a></li>
+          <li><a class="button button--small button--transparent" href="/about">About</a></li>
+          <li><a class="button button--small button--transparent" href="/region">Region</a></li>
+          <li><a class="button button--small button--transparent" href="/city">City</a></li>
+          <li><a class="button button--small button--transparent" href="/site">Site</a></li>
+          <li><a class="button button--small button--transparent" href="/edit">Edit</a></li>
+          <li><a class="button button--small button--transparent" href="/index">Homepage</a></li>
+          <li><a class="button button--small button--transparent" href="/profile">Profile</a></li>
+        </ul>
+      </nav>
+      <nav class="rightNav">
+        <ul>
           <% if (!currentUser) { %>
             <li><a class="button button--small button--transparent" href="/auth/signup">Signup</a></li>
             <li><a class="button button--small button--transparent" href="/auth/login">Login</a></li>
@@ -30,9 +35,12 @@
           <% } %>
         </ul>
       </nav>
+    </div>
     </header>
-    <%- include('partials/alerts') %>
-    <h1>Authentication</h1>
-    <%- body %>
+
+
+      <%- body %>
+
+    
   </body>
 </html>
