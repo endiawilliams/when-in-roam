@@ -2892,11 +2892,8 @@ body {
   font-family: sans-serif;
 }
 
-.pageContent {
-  color: red;
-}
-
 .headNav {
+  background-color: #FFEFE0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2923,6 +2920,10 @@ body {
   margin: 5px;
 }
 
+.navLogo {
+  margin: 5px;
+}
+
 h1 {
   color: #8BACB3;
 }
@@ -2931,11 +2932,17 @@ h2 {
   color: #B39479;
 }
 
-.aboutBackImg {
-  position: static;
+.megaAbout {
+  background-image: url("../images/undraw_trip_dv9f.svg");
+}
+
+.aboutPage {
+  text-align: center;
 }
 
 .aboutText {
-  position: absolute;
+  font-size: 20px;
+  color: #B39479;
+  margin-top: 100px;
 }
 /*# sourceMappingURL=style.css.map */

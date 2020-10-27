@@ -34,6 +34,9 @@ body {
     margin: 5px
 }
 
+.navLogo {
+    margin: 5px;
+}
 h1 {
     color: $drkblue;
 }
@@ -42,12 +45,25 @@ h2 {
     color: $drkbrown;
 }
 
-//page specific styles
-
-.aboutBackImg {
-    position: static;
+.megaAbout {
+    background-image: url("../images/undraw_trip_dv9f.svg");
+    // media
 }
 
+.aboutPage {
+    text-align: center;
+
+}
+// .aboutBackImg {
+//     position: absolute;
+//     top: 65px;
+//     width: 50%;
+//     min-width: 300px;
+//     opacity: 65%;
+// }
+
 .aboutText {
-    position: absolute;
+    font-size: 20px;
+    color: $drkbrown;
+    margin-top: 100px;
 }
