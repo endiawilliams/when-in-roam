@@ -1,5 +1,5 @@
 //framework
-// @import 'custom-settings';
+@import 'custom-settings';
 @import '../../node_modules/sierra-library/lib/index.scss';
 
 //color theme veriables
@@ -9,19 +9,61 @@ $drkblue: #8BACB3;
 $ltbrown: #FFEFE0;
 $drkbrown: #B39479;
 
+//
 body {
     background-color: $bkgd;
     font-family: sans-serif;
 }
 
-.nav{
-  display: flex;
+
+.headNav {
+    background-color: $ltbrown;
+    display: flex;
+    justify-content: space-between;
+}
+.button{
+    color: $drkblue;
+}
+.leftNav ul {
+    display: flex;
+    margin: 5px;
 }
 
+.rightNav ul {
+    display: flex;
+    margin: 5px
+}
+
+.navLogo {
+    margin: 5px;
+}
 h1 {
     color: $drkblue;
 }
 
 h2 {
     color: $drkbrown;
+}
+
+.megaAbout {
+    background-image: url("../images/undraw_trip_dv9f.svg");
+    // media
+}
+
+.aboutPage {
+    text-align: center;
+
+}
+// .aboutBackImg {
+//     position: absolute;
+//     top: 65px;
+//     width: 50%;
+//     min-width: 300px;
+//     opacity: 65%;
+// }
+
+.aboutText {
+    font-size: 20px;
+    color: $drkbrown;
+    margin-top: 100px;
 }
