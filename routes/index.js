@@ -16,26 +16,20 @@ router.get('/about', (req, res) => {
 // });
 
 
-// GET region (COMPLETE? need toUpperCase all regions)
+// GET region (COMPLETE? need to render region and all posts for foundRegion)
 router.get('/region/:name', (req, res) => {
     let currentRegion = req.params.name;
-    let selectedRegion = currentRegion.charAt(0).toUpperCase()+currentRegion.slice(1);    
+    let selectedRegion = currentRegion.charAt(0).toUpperCase()+currentRegion.slice(1);
+
     if (selectedRegion === "Northamerica" || selectedRegion === "Southamerica") {
-        // let str = selectRegion.charAt(5).toUpperCase()
-        // let arr = str.split();
-        // arr.splice(5, 0, " ");
-        // selectRegion = arr.toString();
-        // console.log(selectRegion);
-        let newRegion = selectedRegion.replace("america", " America");
-        console.log(newRegion);
+        selectedRegion = selectedRegion.replace("america", " America");
     } 
     db.location.findAll({
         where: {
             region: selectedRegion
         }
     }).then(function(foundRegion) {
-        console.log(foundRegion);
-        res.render('region', {region:currentRegion});
+        res.render('region', {region: foundRegion});
     })
 })
 
@@ -47,7 +41,7 @@ router.get('/region/:name', (req, res) => {
 // });
 
 
-// // GET city  (COMPLETE? need toUpperCase all cities?)
+// // GET city  (COMPLETE? need to render city and all posts for foundCity)
 //     // user selects city to see all sites with posts
 //     // render to city.ejs
 router.get('/city/:id', (req, res) => {
@@ -69,67 +63,79 @@ router.get('/city/:id', (req, res) => {
 // });
 
 
-// // // GET site
-// //     // user selects specific site to see all posts
-// //     // render to site.ejs
-// router.get('/site/:id', (req, res) => {
-//     let currentSite = req.params.id;
-//     db.site.findOne({
-//         where: {
-//             locationId: currentSite
-//         }
-//     }).then(function(foundSite) {
-//         console.log(foundSite);
-//         res.render('site');
-//     })
-// });
+
+// GET site (COMPLETE? need to render site and all posts for siteId)
+    // user selects specific site to see all posts
+    // render to site.ejs
+router.get('/site/:id', (req, res) => {
+    let currentSite = req.params.id;
+    db.site.findOne({
+        where: {
+            locationId: currentSite
+        }
+    }).then(function(foundSite) {
+        console.log(foundSite);
+        res.render('site', {site: foundSite});
+    })
+});
 
 
-// // GET profile (COMPLETE? Need testing)
-//     // returns all current user posts
-//     // render to profile.ejs
-// router.get('/profile/:name', (req, res) => {
-//     // search user db to find One and return to foundUser
-//     db.user.findOne().then(function(foundUser) {
-//         // use foundUser to search Post using req.body.userId?
-//         foundUser.getPost({
-//             userId: req.body.userId
-//         // then using selected userId, return all Post
-//         }).then(function(allPost) {
-//             // return allPost
-//             console.log(allPost);
-//             console.log(allPost.dataValues);
-//             // render to profile.ejs
-//             res.render('profile');
-//         })
-//     })
-// });
+// GET profile (COMPLETE? Need testing)
+    // returns all current user posts
+    // render to profile.ejs
+router.get('/profile/:username', (req, res) => {
+    db.user.findOne({
+        where: {
+            name: req.params.username
+        }
+    }).then(function(foundUser) {
+        db.post.findAll({
+            where: {
+                userId: foundUser.dataValues.id
+            }
+        }).then(function(allPosts) {
+            console.log(allPosts);
+            res.render('profile', {posts: allPosts});
+        })
+    })
+});
 
 
-// // GET post
-//     // returns user to edit page from profile or post page
-//     // find postId
-//     // render to edit.ejs
-// router.get('/post/:id', (req, res) => {
-//     res.render('edit');
-// });
+// GET post  (COMPLETE? Need testing)
+    // returns user to edit page from profile or post page
+    // find postId
+    // render to edit.ejs
+router.get('/post/:id', (req, res) => {
+    db.post.findOne({
+        where: {
+            id: req.params.id
+        }
+    }).then(function(foundPost) {
+        console.log(foundPost);
+        res.render('post', {post: foundPost});
+    })
+});
 
 
-// // POST post
-//     // user submits post and/or edits on a post
-//     // find user name && postId
-//     // render to post.ejs
-// router.post('/post/:id', (req, res) => {
-//     res.render('post');
-// });
+// POST post  (COMPLETE? Need testing)
+    // user submits post and/or edits on a post
+    // render to post.ejs
+router.post('/post/:id', (req, res) => {
+    db.post.create(req.body).then(newPost => {
+        console.log(newPost);
+        res.render('post', {newPost: newPost});
+    })
+});
 
 
-// GET post 
+// GET new 
     // user goes to form page to create a new post
     // render to create.ejs
-router.get('/create', (req, res) => {
-    res.render('create');
+router.get('/new', (req, res) => {
+    res.render('new');
 });
+
+// POST new
 
 
 // export router
