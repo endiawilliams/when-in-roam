@@ -67,7 +67,19 @@ router.get('/city/:id', (req, res) => {
             id: selectedCity
         }
     }).then(function(foundCity) {
-        res.render('city', {city: foundCity});
+        console.log(foundCity)
+        db.post.findAll({
+            where: {
+                locationId: foundCity.dataValues.id
+            }
+        }).then(function(allCityPosts) {
+<<<<<<< HEAD
+            console.log(allCityPosts)
+=======
+            // console.log(allCityPosts)
+>>>>>>> 96d04b04dfb909b279a7469c970b2fa43fa5ade2
+            res.render('city', {city: foundCity, posts: allCityPosts});
+        })
     })
 })
 
@@ -111,7 +123,7 @@ router.get('/profile/:username', (req, res) => {
             }
         }).then(function(allPosts) {
             console.log(allPosts);
-            res.render('profile', {posts: allPosts});
+            res.render('profile', {user: foundUser, posts: allPosts});
         })
     })
 });
