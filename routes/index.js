@@ -67,7 +67,15 @@ router.get('/city/:id', (req, res) => {
             id: selectedCity
         }
     }).then(function(foundCity) {
-        res.render('city', {city: foundCity});
+        console.log(foundCity)
+        db.post.findAll({
+            where: {
+                locationId: foundCity.dataValues.id
+            }
+        }).then(function(allCityPosts) {
+            console.log(allCityPosts)
+            res.render('city', {city: foundCity, posts: allCityPosts});
+        })
     })
 })
 
