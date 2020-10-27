@@ -47,6 +47,13 @@ h2 {
 .megaAbout {
     background-image: url("../images/undraw_trip_dv9f.svg");
     // media
+    // @media only screen and (min-width: 1200px) {
+    //     /* styles for wide screens */
+    // };
+    // @media only screen and (max-width: 320px) {
+    //     /* styles for narrow screens */
+    // };
+    //STRECH>:?????
 }
 
 .aboutPage {
@@ -62,6 +69,7 @@ h2 {
 // }
 
 .aboutText {
+    background: rgba(0,0,0,0.3)
     font-size: 20px;
     color: $drkbrown;
     margin-top: 100px;
