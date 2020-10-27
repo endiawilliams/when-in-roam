@@ -73,11 +73,6 @@ router.get('/city/:id', (req, res) => {
                 locationId: foundCity.dataValues.id
             }
         }).then(function(allCityPosts) {
-<<<<<<< HEAD
-            console.log(allCityPosts)
-=======
-            // console.log(allCityPosts)
->>>>>>> 96d04b04dfb909b279a7469c970b2fa43fa5ade2
             res.render('city', {city: foundCity, posts: allCityPosts});
         })
     })
@@ -102,8 +97,21 @@ router.get('/site/:id', (req, res) => {
             locationId: currentSite
         }
     }).then(function(foundSite) {
-        console.log(foundSite);
-        res.render('site', {site: foundSite});
+        // console.log(foundSite);
+        db.post.findAll({
+            where: {
+                siteId: foundSite.dataValues.id
+            }
+        }).then(function(allSitePosts) {
+            db.location.findOne({
+                where: {
+                    id: allSitePosts[0].dataValues.locationId
+                }
+            }).then(function(foundLocation) {
+                res.render('site', {site: foundSite, posts: allSitePosts, location: foundLocation});
+                console.log(foundLocation)
+            })
+        })
     })
 });
 
