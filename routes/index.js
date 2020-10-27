@@ -16,7 +16,7 @@ router.get('/about', (req, res) => {
 // });
 
 
-// GET region (COMPLETE? need toUpperCase all regions)
+// GET region (COMPLETE? need to render region and all posts for foundRegion)
 router.get('/region/:name', (req, res) => {
     let currentRegion = req.params.name;
     let selectedRegion = currentRegion.charAt(0).toUpperCase()+currentRegion.slice(1);
@@ -57,7 +57,7 @@ router.get('/region/:name', (req, res) => {
 // });
 
 
-// // GET city  (COMPLETE? need toUpperCase all cities?)
+// // GET city  (COMPLETE? need to render city and all posts for foundCity)
 //     // user selects city to see all sites with posts
 //     // render to city.ejs
 router.get('/city/:id', (req, res) => {
@@ -80,7 +80,7 @@ router.get('/city/:id', (req, res) => {
 
 
 
-// GET site
+// GET site (COMPLETE? need to render site and all posts for siteId)
     // user selects specific site to see all posts
     // render to site.ejs
 router.get('/site/:id', (req, res) => {
@@ -150,6 +150,8 @@ router.post('/post/:id', (req, res) => {
 router.get('/new', (req, res) => {
     res.render('new');
 });
+
+// POST new
 
 
 // export router

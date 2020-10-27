@@ -1,3 +1,17 @@
-<h2>Profile Page</h2>
+<h2>My Posts</h2>
 
 <h3>Welcome to your PROFILE</h3>
+
+<div class="posts-container">
+    <% for (let i=0; i<posts.length; i++) { %>
+        <div class="profile-post">
+            <h4><%= post[i].title %></h4>
+            <!-- <h6><%= (site name) %></h6> -->
+            <!-- <h6><%= (location city, location country) %></h6> -->
+            <p><%= post[i].text %></p> 
+        
+            <button class="" type="submit">Edit Post</button>
+            <button class="" type="delete">Delete Post</button>
+        </div>
+    <% } %>
+</div>
