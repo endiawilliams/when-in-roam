@@ -15,7 +15,7 @@
 
             <%if (currentCountry === region[j].dataValues.country && citiesInCountry.includes(currentCity) === false) {%>
                 <%citiesInCountry.push(currentCity)%>
-                <p><%=citiesInCountry[j]%></p>
+                <a href="/city/<%=region[j].dataValues.id%>"><%=citiesInCountry[j]%></a><br />
             <%}%>
         <%}%>
     <%}%>
