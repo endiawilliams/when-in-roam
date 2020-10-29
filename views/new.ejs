@@ -1,22 +1,25 @@
 <h2>NEW POST</h2>
 <h3>we will need a form to collect the info, title, text , and location</h3>
 
-<form action="new.ejs" method="POST">
+<!-- <form action="/profile/<%= user.name %>" method="POST"> -->
+<form action="/new" method="POST">
     <label for="new-country">Country</label>
     <input id="new-country" type="text" name="country">
 
     <label for="new-city">City</label>
     <input id="new-city" type="text" name="city">
 
-    <label for="location-type">Location Type</label>
-    <input id="location-type" type="text" name="type">
+    <label for="site-type">Location Type</label>
+    <input id="site-type" type="text" name="type">
+
+    <label for="site-name">Site</label>
+    <input id="site-name" type="text" name="name">
     
     <label for="date">Date</label>
-    <input id="date" type="integer" name="date">
-
-    <label for="post-title">Post Title</label>
-    <input id="post-title" type="text" name="title">
+    <input id="date" type="number" name="date">
 
     <label for="new-content">Content</label>
     <input id="new-content" type="text" name="content">
+    
+    <button class="button" type="submit">Submit</button>
 </form>
