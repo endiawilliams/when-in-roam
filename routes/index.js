@@ -125,14 +125,17 @@ router.get('/profile/:name', (req, res) => {
     console.log(req.query.post)
     db.user.findOne({
         where: {
-            name: req.params.name
+            name: req.params.name //don't need this. 
         }
     }).then(function(foundUser) {
         db.post.findAll({
             where: {
                 userId: foundUser.dataValues.id
-            }
+            },
+            include: [db.location, db.site]
         }).then(function(allPosts) {
+            console.log('******************')
+            console.log(allPosts)
             let locationIds = []
             for (let i=0; i<allPosts.length; i++) {
                 locationIds.push(allPosts[i].dataValues.locationId)
@@ -151,6 +154,7 @@ router.get('/profile/:name', (req, res) => {
                         id: siteIds
                     }
                 }).then(function(foundSites) {
+                    console.log(foundLocations)
                     res.render('profile', {user: foundUser, posts: allPosts, locations: foundLocations, sites:foundSites});
                 })
             })
@@ -218,12 +222,34 @@ router.post('/new', async (req, res) => {
             content: req.body.content,
             type: req.body.type
         });
-        res.redirect(`profile/${foundUser.name}?post=${newPost.id}`);
+        res.redirect(`profile/${foundUser.name}`);
     } catch (error) {
         console.log(error);
         res.send("error");
     }
 });
+
+//DELETE post
+router.delete('/profile/:name', (req, res) => {
+    db.post.destroy({
+        where: {
+            id: req.params.id
+        }
+    }).then(function(deletedPost) {
+        res.redirect('/profile/:name')
+    })
+})
+
+router.put('/edit/:id', (req, res) => {
+    db.post.update({
+        where: {
+            id: req.params.id
+        }
+    }).then(function(updatedPost) {
+        res.redirect('/profile/:name')
+    })
+})
+
 
 // export router
 module.exports = router;

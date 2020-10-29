@@ -10,7 +10,6 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
       models.post.hasMany(models.location)
       models.post.hasMany(models.site)
       models.post.belongsTo(models.user)
@@ -20,9 +19,9 @@ module.exports = (sequelize, DataTypes) => {
     userId: DataTypes.INTEGER,
     locationId: DataTypes.INTEGER,
     siteId: DataTypes.INTEGER,
-    date: DataTypes.DATE,
-    type: DataTypes.STRING,
-    content: DataTypes.TEXT
+    content: DataTypes.TEXT,
+    date: DataTypes.INTEGER,
+    type: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'post',

@@ -1,5 +1,6 @@
 'use strict';
 const bcrypt = require('bcrypt')
+
 const {
   Model
 } = require('sequelize');
@@ -14,10 +15,12 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       models.user.hasMany(models.post)
     }
+
     // Compares entered password to hashed password
     validPassword(passwordTyped) {
       return bcrypt.compareSync(passwordTyped, this.password);
     };
+
     // remove the password before serializing
     toJSON() {
       let userData = this.get();
@@ -25,8 +28,8 @@ module.exports = (sequelize, DataTypes) => {
       return userData;
     }
   };
+
   user.init({
-    postId: DataTypes.INTEGER,
     email: {
       type: DataTypes.STRING,
       validate: {
@@ -35,7 +38,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    username: {
+    name: {
       type: DataTypes.STRING,
       validate: {
         len: {
@@ -57,6 +60,7 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'user',
   });
+
   user.beforeCreate((pendingUser, options) => {
     if (pendingUser && pendingUser.password) {
       // hash the password
@@ -65,5 +69,6 @@ module.exports = (sequelize, DataTypes) => {
       pendingUser.password = hash;
     }
   })
+
   return user;
 };
