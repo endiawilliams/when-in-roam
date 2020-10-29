@@ -92,7 +92,7 @@ router.get('/site/:id', (req, res) => {
 router.get('/profile/:name', (req, res) => {
     db.user.findOne({
         where: {
-            name: req.params.name
+            name: req.params.name //don't need this. 
         }
     }).then(function(foundUser) {
         db.post.findAll({
@@ -118,9 +118,9 @@ router.get('/profile/:name', (req, res) => {
                     where: {
                         id: siteIds
                     }
-                }).then(function(foundSites){
-                    
-                    res.render('profile', {user: foundUser, posts: allPosts, locations: foundLocations, sites: foundSites });
+                }).then(function(foundSites) {
+                    console.log(foundLocations)
+                    res.render('profile', {user: foundUser, posts: allPosts, locations: foundLocations, sites:foundSites});
                 })
             }) 
         })
@@ -191,4 +191,27 @@ router.post('/new', async (req, res) => {
 })
 
 
+//DELETE post
+router.delete('/profile/:name', (req, res) => {
+    db.post.destroy({
+        where: {
+            id: req.params.id
+        }
+    }).then(function(deletedPost) {
+        res.redirect('/profile/:name')
+    })
+})
+
+router.put('/edit/:id', (req, res) => {
+    db.post.update({
+        where: {
+            id: req.params.id
+        }
+    }).then(function(updatedPost) {
+        res.redirect('/profile/:name')
+    })
+})
+
+
+// export router
 module.exports = router;

@@ -11,10 +11,10 @@ module.exports = {
       postId: {
         type: Sequelize.INTEGER
       },
-      username: {
+      email: {
         type: Sequelize.STRING
       },
-      email: {
+      username: {
         type: Sequelize.STRING
       },
       password: {
