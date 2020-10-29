@@ -2,21 +2,32 @@
 <h3>we will need a form to collect the info, title, text , and location</h3>
 
 <form action="new.ejs" method="POST">
-    <label for="new-country">Country</label>
-    <input id="new-country" type="text" name="country">
+    <label class="label" for="new-country">Country</label>
+    <input class="input" id="new-country" type="text" name="country">
 
-    <label for="new-city">City</label>
-    <input id="new-city" type="text" name="city">
+    <label class="label" for="new-city">City</label>
+    <input class="input" id="new-city" type="text" name="city">
 
-    <label for="location-type">Location Type</label>
-    <input id="location-type" type="text" name="type">
-    
-    <label for="date">Date</label>
-    <input id="date" type="integer" name="date">
+    <label class="label" for="location-type">Location Type</label>
+    <input class="input" id="location-type" type="text" name="type">
 
-    <label for="post-title">Post Title</label>
-    <input id="post-title" type="text" name="title">
+    <label class="label">Location Type</label>
+    <div class="slect">
+        <select name="type" id="location-type">
+            <option>Resturant/Bar</option>
+            <option>Historical Site</option>
+            <option>Food Market</option>
+            <option>Landmark</option>
+            <option>Other</option>
 
-    <label for="new-content">Content</label>
-    <input id="new-content" type="text" name="content">
+        </select>
+    </div>
+
+    <label class="label" for="date">Date</label>
+    <input class="input" id="date" type="numder" name="date">
+
+    <label class="label" for="new-content">Content</label>
+    <div class="textarea">
+        <textarea id="message"></textarea>
+    </div>  
 </form>

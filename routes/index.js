@@ -1,3 +1,4 @@
+const { render } = require('ejs');
 const express = require('express');
 const db = require('../models')
 const router = express.Router();
@@ -129,7 +130,6 @@ router.get('/profile/:name', (req, res) => {
             }
         }).then(function(allPosts) {
             let locationIds = []
-
             for (let i=0; i<allPosts.length; i++) {
                 locationIds.push(allPosts[i].dataValues.locationId)
             }
@@ -139,7 +139,6 @@ router.get('/profile/:name', (req, res) => {
                 }
             }).then(function(foundLocations) {
                 let siteIds = []
-
                 for (let i=0; i<allPosts.length; i++) {
                     siteIds.push(allPosts[i].dataValues.siteId)
                 }
@@ -189,8 +188,6 @@ router.post('/post/:id', (req, res) => {
 router.get('/new', (req, res) => {
     res.render('new');
 });
-
-// POST new
 
 
 // export router
