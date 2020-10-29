@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   site.init({
+    postId: DataTypes.INTEGER,
     locationId: DataTypes.INTEGER,
     type: DataTypes.STRING,
     name: DataTypes.STRING

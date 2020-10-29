@@ -52,7 +52,6 @@ router.get('/city/:id', (req, res) => {
             id: selectedCity
         }
     }).then(function(foundCity) {
-        console.log(foundCity)
         db.post.findAll({
             where: {
                 locationId: foundCity.dataValues.id
@@ -99,7 +98,8 @@ router.get('/profile/:name', (req, res) => {
         db.post.findAll({
             where: {
                 userId: foundUser.dataValues.id
-            }
+            },
+            include: [db.location, db.site]
         }).then(function(allPosts) {
             let locationIds =[]
             for (let i = 0; i < allPosts.length; i++) {
@@ -119,6 +119,7 @@ router.get('/profile/:name', (req, res) => {
                         id: siteIds
                     }
                 }).then(function(foundSites){
+                    
                     res.render('profile', {user: foundUser, posts: allPosts, locations: foundLocations, sites: foundSites });
                 })
             }) 
@@ -182,8 +183,7 @@ router.post('/new', async (req, res) => {
             content: req.body.content,
             type: req.body.type
         })
-        // Still need to test this REDIRECT
-        res.redirect(`profile/${foundUser.name}?post=${newPost.id}`)
+        res.redirect(`profile/${foundUser.name}`)
     } catch (error) {
         console.log(error)
         res.send("Error")

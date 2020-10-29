@@ -1,14 +1,20 @@
 <h2>My Posts</h2>
 <h3>Welcome to your PROFILE</h3>
 <div class="posts-container">
+    <div class="profile-post">
+    <% for (let i=locations.length-1; i>=0; i--) { %>
+        <h6><%= locations[i].city %>, <%= locations[i].country %></h6>
+    <% } %>
+    
+    <% for (let i=sites.length-1; i>=0; i--) { %>
+    <h6><%= sites[i].name %></h6>
+    <% } %>
+
     <% for (let i=posts.length-1; i>=0; i--) { %>
-        <div class="profile-post">
-            <h6><%= sites[i].name %></h6>
-            <h6><%= locations[i].city %>, <%= locations[i].country %></h6>
             <p><%= posts[i].date %></p> 
             <p><%= posts[i].content %></p> 
             <button class="" type="submit">Edit Post</button>
             <button class="" type="delete">Delete Post</button>
-        </div>
     <% } %>
+    </div>
 </div>
