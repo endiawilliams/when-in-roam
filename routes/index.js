@@ -1,3 +1,4 @@
+const { render } = require('ejs');
 const express = require('express');
 const db = require('../models')
 const router = express.Router();
@@ -70,7 +71,14 @@ router.get('/city/:id', (req, res) => {
             id: selectedCity
         }
     }).then(function(foundCity) {
-        res.render('city', {city: foundCity});
+        console.log(foundCity)
+        db.post.findAll({
+            where: {
+                locationId: foundCity.dataValues.id
+            }
+        }).then(function(allCityPosts) {
+            res.render('city', {city: foundCity, posts: allCityPosts});
+        })
     })
 })
 
@@ -93,8 +101,19 @@ router.get('/site/:id', (req, res) => {
             locationId: currentSite
         }
     }).then(function(foundSite) {
-        console.log(foundSite);
-        res.render('site', {site: foundSite});
+        db.post.findAll({
+            where: {
+                siteId: foundSite.dataValues.id
+            }
+        }).then(function(allSitePosts) {
+            db.location.findOne({
+                where: {
+                    id: allSitePosts[0].dataValues.locationId
+                }
+            }).then(function(foundLocation) {
+                res.render('site', {site: foundSite, posts: allSitePosts, location: foundLocation});
+            })
+        })
     })
 });
 
@@ -102,10 +121,11 @@ router.get('/site/:id', (req, res) => {
 // GET profile (COMPLETE? Need testing)
     // returns all current user posts
     // render to profile.ejs
-router.get('/profile/:username', (req, res) => {
+router.get('/profile/:name', (req, res) => {
+    console.log(req.query.post)
     db.user.findOne({
         where: {
-            name: req.params.username
+            name: req.params.name
         }
     }).then(function(foundUser) {
         db.post.findAll({
@@ -113,8 +133,27 @@ router.get('/profile/:username', (req, res) => {
                 userId: foundUser.dataValues.id
             }
         }).then(function(allPosts) {
-            console.log(allPosts);
-            res.render('profile', {posts: allPosts});
+            let locationIds = []
+            for (let i=0; i<allPosts.length; i++) {
+                locationIds.push(allPosts[i].dataValues.locationId)
+            }
+            db.location.findAll({
+                where: {
+                    id: locationIds
+                }
+            }).then(function(foundLocations) {
+                let siteIds = []
+                for (let i=0; i<allPosts.length; i++) {
+                    siteIds.push(allPosts[i].dataValues.siteId)
+                }
+                db.site.findAll({
+                    where: {
+                        id: siteIds
+                    }
+                }).then(function(foundSites) {
+                    res.render('profile', {user: foundUser, posts: allPosts, locations: foundLocations, sites:foundSites});
+                })
+            })
         })
     })
 });
@@ -131,18 +170,7 @@ router.get('/post/:id', (req, res) => {
         }
     }).then(function(foundPost) {
         console.log(foundPost);
-        res.render('post', {post: foundPost});
-    })
-});
-
-
-// POST post  (COMPLETE? Need testing)
-    // user submits post and/or edits on a post
-    // render to post.ejs
-router.post('/post/:id', (req, res) => {
-    db.post.create(req.body).then(newPost => {
-        console.log(newPost);
-        res.render('post', {newPost: newPost});
+        res.render('post/:id', {post: foundPost});
     })
 });
 
@@ -150,12 +178,52 @@ router.post('/post/:id', (req, res) => {
 // GET new 
     // user goes to form page to create a new post
     // render to create.ejs
-router.get('/new', (req, res) => {
-    res.render('new');
+    router.get('/new', (req, res) => {
+        db.user.findOne( {
+            where: {
+                name: req.user.name
+            }
+        }).then(function(foundUser){
+            res.render('new', {user: foundUser});
+        })
+    });
+    
+    // POST post  (COMPLETE? Need testing)
+        // user submits post and/or edits on a post
+        // render to post.ejs
+router.post('/new', async (req, res) => {
+    try {
+        const foundUser = await db.user.findOne({
+            where: {
+                name: req.user.name
+            }
+        });
+        const newLocationPost = await db.location.findOrCreate({
+            where: {
+                country: req.body.country, 
+                city: req.body.city
+            }
+        });
+        const newSitePost = await db.site.findOrCreate({
+            where: {
+                type: req.body.type,
+                name: req.body.name
+            }
+        });
+        const newPost = await db.post.create({
+            userId: foundUser.id,
+            locationId: newLocationPost[0].dataValues.id,
+            siteId: newSitePost[0].dataValues.id,
+            date: req.body.date,
+            content: req.body.content,
+            type: req.body.type
+        });
+        res.redirect(`profile/${foundUser.name}?post=${newPost.id}`);
+    } catch (error) {
+        console.log(error);
+        res.send("error");
+    }
 });
-
-// POST new
-
 
 // export router
 module.exports = router;
