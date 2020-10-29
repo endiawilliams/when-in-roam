@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   location.init({
+    postId: DataTypes.INTEGER,
     city: DataTypes.STRING,
     country: DataTypes.STRING,
     region: DataTypes.STRING
