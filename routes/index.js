@@ -15,7 +15,6 @@ router.get('/about', (req, res) => {
 //     res.render('region');
 // });
 
-
 // GET region (COMPLETE? need to render region and all posts for foundRegion)
 router.get('/region/:name', (req, res) => {
     let currentRegion = req.params.name;
@@ -31,7 +30,10 @@ router.get('/region/:name', (req, res) => {
     db.location.findAll({
         where: {
             region: selectedRegion
-        }
+        },
+        order: [
+            ['country', 'ASC']
+        ]
     }).then(function(foundRegion) {
         let regionIds = []
 
@@ -44,6 +46,7 @@ router.get('/region/:name', (req, res) => {
                 locationId: regionIds
             }
         }).then(function(allRegionPosts) {
+            console.log(foundRegion)
             res.render('region', {region: foundRegion, posts: allRegionPosts});
         })
     })
