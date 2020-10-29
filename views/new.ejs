@@ -3,11 +3,12 @@
 
 <!-- <form action="/profile/<%= user.name %>" method="POST"> -->
 <form action="/new" method="POST">
+
     <label for="new-country">Country</label>
     <input id="new-country" type="text" name="country">
-
-    <label for="new-city">City</label>
-    <input id="new-city" type="text" name="city">
+    
+    <label class="label" for="new-city">City</label>
+    <input class="input" id="new-city" type="text" name="city">
 
     <label for="site-type">Location Type</label>
     <input id="site-type" type="text" name="type">
@@ -22,4 +23,5 @@
     <input id="new-content" type="text" name="content">
     
     <button class="button" type="submit">Submit</button>
+
 </form>
