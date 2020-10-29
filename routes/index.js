@@ -98,7 +98,6 @@ router.get('/site/:id', (req, res) => {
             locationId: currentSite
         }
     }).then(function(foundSite) {
-        // console.log(foundSite);
         db.post.findAll({
             where: {
                 siteId: foundSite.dataValues.id
@@ -110,7 +109,6 @@ router.get('/site/:id', (req, res) => {
                 }
             }).then(function(foundLocation) {
                 res.render('site', {site: foundSite, posts: allSitePosts, location: foundLocation});
-                console.log(foundLocation)
             })
         })
     })
@@ -131,9 +129,8 @@ router.get('/profile/:name', (req, res) => {
                 userId: foundUser.dataValues.id
             }
         }).then(function(allPosts) {
-            let locationIds =[]
-
-            for (let i = 0; i < allPosts.length; i++) {
+            let locationIds = []
+            for (let i=0; i<allPosts.length; i++) {
                 locationIds.push(allPosts[i].dataValues.locationId)
             }
             db.location.findAll({
@@ -142,18 +139,17 @@ router.get('/profile/:name', (req, res) => {
                 }
             }).then(function(foundLocations) {
                 let siteIds = []
-
-                for (let i = 0; i < allPosts.length; i++) {
+                for (let i=0; i<allPosts.length; i++) {
                     siteIds.push(allPosts[i].dataValues.siteId)
                 }
                 db.site.findAll({
                     where: {
                         id: siteIds
                     }
-                }).then(function(foundSites){
-                    res.render('profile', {user: foundUser, posts: allPosts, locations: foundLocations, sites: foundSites });
+                }).then(function(foundSites) {
+                    res.render('profile', {user: foundUser, posts: allPosts, locations: foundLocations, sites:foundSites});
                 })
-            }) 
+            })
         })
     })
 });
