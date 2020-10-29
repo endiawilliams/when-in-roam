@@ -1,6 +1,22 @@
 <h1><%=region[0].dataValues.region%></h1>
 
-<%for (let i = 0; i < region.length; i++) {%>
-    <p><%=region[i].dataValues.id%></p>
-<%}%>
+<%let countries = []%>
+<%let citiesInCountry = []%>
 
+<%for (let i = 0; i < region.length; i++) {%>
+    <%let currentCountry = region[i].dataValues.country%>
+
+    <%if (countries.includes(currentCountry) === false) {%>
+        <%countries.push(currentCountry)%>
+        <h2><%=currentCountry%></h2>
+
+        <%for (let j = 0; j < region.length; j++) {%>
+            <%let currentCity = region[j].dataValues.city%>
+
+            <%if (currentCountry === region[j].dataValues.country && citiesInCountry.includes(currentCity) === false) {%>
+                <%citiesInCountry.push(currentCity)%>
+                <p><%=citiesInCountry[j]%></p>
+            <%}%>
+        <%}%>
+    <%}%>
+<%}%>
