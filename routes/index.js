@@ -65,19 +65,18 @@ router.get('/region/:name', (req, res) => {
 //     // user selects city to see all sites with posts
 //     // render to city.ejs
 router.get('/city/:id', (req, res) => {
-    let selectedCity = req.params.id;
+    let selectedCity = req.params.id
     db.location.findOne({
         where: {
             id: selectedCity
         }
     }).then(function(foundCity) {
-        console.log(foundCity)
         db.post.findAll({
             where: {
                 locationId: foundCity.dataValues.id
             }
         }).then(function(allCityPosts) {
-            res.render('city', {city: foundCity, posts: allCityPosts});
+            res.render('city', {city: foundCity, posts: allCityPosts})
         })
     })
 })
