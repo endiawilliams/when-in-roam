@@ -10,85 +10,25 @@ router.get('/about', (req, res) => {
 
 
 // GET region (COMPLETE)
-router.get('/region/:name', (req, res) => {
-    let currentRegion = req.params.name
-    let selectedRegion = currentRegion.charAt(0).toUpperCase()+currentRegion.slice(1)
+router.get('/region/:regionName', (req, res) => {
+    let selectedRegion = req.params.regionName
+    let capitalizedRegion = selectedRegion.charAt(0).toUpperCase()+selectedRegion.slice(1)
 
-    if (selectedRegion === "Northamerica" || selectedRegion === "Southamerica") {
-        selectedRegion = selectedRegion.replace("america", " America")
+    if (capitalizedRegion === "Northamerica" || capitalizedRegion === "Southamerica") {
+        capitalizedRegion = capitalizedRegion.replace("america", " America")
     } 
 
-    db.location.findAll({
-        where: {
-            region: selectedRegion
-        },
-        order: [
-            ['country', 'ASC']
-        ]
-    }).then(function(foundRegion) {
-        let regionIds = []
-
-        for (let i = 0; i < foundRegion.length; i++) {
-            regionIds.push(foundRegion[i].dataValues.id)
-        }
-
         db.post.findAll({
             where: {
-                locationId: regionIds
+                regionName: capitalizedRegion
             }
-        }).then(function(allRegionPosts) {
-            console.log(foundRegion)
-            res.render('region', {region: foundRegion, posts: allRegionPosts})
-        })
+        }).then(function(foundPosts){
+            res.render('region', {posts: foundPosts})
     })
 })
 
 
-// GET city  (COMPLETE)
-router.get('/city/:id', (req, res) => {
-    let selectedCity = req.params.id
-    db.location.findOne({
-        where: {
-            id: selectedCity
-        }
-    }).then(function(foundCity) {
-        db.post.findAll({
-            where: {
-                locationId: foundCity.dataValues.id
-            }
-        }).then(function(allCityPosts) {
-            res.render('city', {city: foundCity, posts: allCityPosts})
-        })
-    })
-})
-
-
-// GET site (COMPLETE)
-router.get('/site/:id', (req, res) => {
-    let currentSite = req.params.id
-    db.site.findOne({
-        where: {
-            locationId: currentSite
-        }
-    }).then(function(foundSite) {
-        db.post.findAll({
-            where: {
-                siteId: foundSite.dataValues.id
-            }
-        }).then(function(allSitePosts) {
-            db.location.findOne({
-                where: {
-                    id: allSitePosts[0].dataValues.locationId
-                }
-            }).then(function(foundLocation) {
-                res.render('site', {site: foundSite, posts: allSitePosts, location: foundLocation})
-            })
-        })
-    })
-})
-
-
-// GET profile (COMPLETE? Need testing)
+// GET profile (COMPLETE)
 router.get('/profile/:username', async (req, res) => {
     const foundUser = req.user
     const allPosts = await db.post.findAll({
@@ -96,23 +36,7 @@ router.get('/profile/:username', async (req, res) => {
             userId: foundUser.dataValues.id
         }
     })
-    console.log('!!!!!!!!!!', allPosts)
     res.render('profile', {posts: allPosts});
-})
-
-
-// GET post  (COMPLETE? Need testing)
-    // returns user to edit page from profile or post page
-    // find postId
-    // render to edit.ejs
-router.get('/post/:id', (req, res) => {
-    db.post.findOne({
-        where: {
-            id: req.params.id
-        }
-    }).then(function(foundPost) {
-        res.render('post/:id', {post: foundPost})
-    })
 })
 
 
@@ -120,7 +44,7 @@ router.get('/post/:id', (req, res) => {
 router.get('/new', (req, res) => {
     res.render('new')
 })
-    
+
 
 // POST new  (COMPLETE)
 router.post('/new', async (req, res) => {
@@ -144,7 +68,7 @@ router.post('/new', async (req, res) => {
 })
 
 
-// EDIT post
+// GET edit (COMPLETE)
 router.get('/post/:id/edit', (req, res) => {
     db.post.findByPk(req.params.id)
     .then(function(foundPost){
@@ -153,6 +77,8 @@ router.get('/post/:id/edit', (req, res) => {
     })
 })
 
+
+// PUT edit (COMPLETE)
 router.put('/post/:id/edit', (req, res) => {
     db.post.update(req.body, {
         where: {
@@ -164,7 +90,7 @@ router.put('/post/:id/edit', (req, res) => {
 })
 
 
-//DELETE post
+//DELETE post (COMPLETE)
 router.delete('/post/:id', (req, res) => {
     db.post.destroy({
         where: {
@@ -175,5 +101,5 @@ router.delete('/post/:id', (req, res) => {
     })
 })
 
-// export router
+
 module.exports = router;
