@@ -26,7 +26,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   user.init({
-    postId: DataTypes.INTEGER,
     email: {
       type: DataTypes.STRING,
       validate: {
@@ -66,4 +65,4 @@ module.exports = (sequelize, DataTypes) => {
     }
   })
   return user;
-};
+}; 

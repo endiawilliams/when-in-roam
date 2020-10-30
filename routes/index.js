@@ -10,36 +10,19 @@ router.get('/about', (req, res) => {
 
 
 // GET region (COMPLETE)
-router.get('/region/:name', (req, res) => {
-    let currentRegion = req.params.name
-    let selectedRegion = currentRegion.charAt(0).toUpperCase()+currentRegion.slice(1)
-
-    if (selectedRegion === "Northamerica" || selectedRegion === "Southamerica") {
-        selectedRegion = selectedRegion.replace("america", " America")
-    } 
-
-    db.location.findAll({
-        where: {
-            region: selectedRegion
-        },
-        order: [
-            ['country', 'ASC']
-        ]
-    }).then(function(foundRegion) {
-        let regionIds = []
-
-        for (let i = 0; i < foundRegion.length; i++) {
-            regionIds.push(foundRegion[i].dataValues.id)
-        }
-
+// GET region (COMPLETE)
+router.get('/region/:regionName', (req, res) => {
+    let selectedRegion = req.params.regionName
+    let capitalizedRegion = selectedRegion.charAt(0).toUpperCase()+selectedRegion.slice(1)
+    if (capitalizedRegion === "Northamerica" || capitalizedRegion === "Southamerica") {
+        capitalizedRegion = capitalizedRegion.replace("america", " America")
+    }
         db.post.findAll({
             where: {
-                locationId: regionIds
+                regionName: capitalizedRegion
             }
-        }).then(function(allRegionPosts) {
-            console.log(foundRegion)
-            res.render('region', {region: foundRegion, posts: allRegionPosts})
-        })
+        }).then(function(foundPosts){
+            res.render('region', {posts: foundPosts})
     })
 })
 
