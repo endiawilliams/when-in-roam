@@ -10,46 +10,10 @@ router.get('/about', (req, res) => {
 
 
 // GET region (COMPLETE)
-<<<<<<< HEAD
-router.get('/region/:regionName', (req, res) => {
-    let selectedRegion = req.params.regionName
-    let capitalizedRegion = selectedRegion.charAt(0).toUpperCase()+selectedRegion.slice(1)
-    if (capitalizedRegion === "Northamerica" || capitalizedRegion === "Southamerica") {
-        capitalizedRegion = capitalizedRegion.replace("america", " America")
-    }
-        db.post.findAll({
-            where: {
-                regionName: capitalizedRegion
-            }
-        }).then(function(foundPosts){
-            res.render('region', {posts: foundPosts})
-    })
-})
-
-
-// GET city  (COMPLETE)
-router.get('/city/:id', (req, res) => {
-    let selectedCity = req.params.id
-    db.location.findOne({
-        where: {
-            id: selectedCity
-        }
-    }).then(function(foundCity) {
-        db.post.findAll({
-            where: {
-                locationId: foundCity.dataValues.id
-            }
-        }).then(function(allCityPosts) {
-            res.render('city', {city: foundCity, posts: allCityPosts})
-        })
-    })
-})
-=======
 
 router.get('/region/:regionName', (req, res) => {
     let selectedRegion = req.params.regionName
     let capitalizedRegion = selectedRegion.charAt(0).toUpperCase()+selectedRegion.slice(1)
->>>>>>> submain
 
     if (capitalizedRegion === "Northamerica" || capitalizedRegion === "Southamerica") {
         capitalizedRegion = capitalizedRegion.replace("america", " America")
