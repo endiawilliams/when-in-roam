@@ -62,7 +62,7 @@ These wireframes helped us to navigate and create routes and views and collectiv
 
 #### Coding
 
-![get region](./public/images/getregion.png)
+![get region](./public/images/getregion.png) 
 
 ![get profile](./public/images/getprofile.png)
 
