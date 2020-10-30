@@ -89,43 +89,16 @@ router.get('/site/:id', (req, res) => {
 
 
 // GET profile (COMPLETE? Need testing)
-router.get('/profile/:name', (req, res) => {
-    db.user.findOne({
+router.get('/profile/:username', async (req, res) => {
+    const foundUser = req.user
+    const allPosts = await db.post.findAll({
         where: {
-            name: req.params.name //don't need this. 
+            userId: foundUser.dataValues.id
         }
-    }).then(function(foundUser) {
-        db.post.findAll({
-            where: {
-                userId: foundUser.dataValues.id
-            },
-            include: [db.location, db.site]
-        }).then(function(allPosts) {
-            let locationIds =[]
-            for (let i = 0; i < allPosts.length; i++) {
-                locationIds.push(allPosts[i].dataValues.locationId)
-            }
-            db.location.findAll({
-                where: {
-                    id: locationIds
-                }
-            }).then(function(foundLocations) {
-                let siteIds = []
-                for (let i = 0; i < allPosts.length; i++) {
-                    siteIds.push(allPosts[i].dataValues.siteId)
-                }
-                db.site.findAll({
-                    where: {
-                        id: siteIds
-                    }
-                }).then(function(foundSites) {
-                    console.log(foundLocations)
-                    res.render('profile', {user: foundUser, posts: allPosts, locations: foundLocations, sites:foundSites});
-                })
-            }) 
-        })
     })
-});
+    console.log('!!!!!!!!!!', allPosts)
+    res.render('profile', {posts: allPosts});
+})
 
 
 // GET post  (COMPLETE? Need testing)
@@ -145,45 +118,25 @@ router.get('/post/:id', (req, res) => {
 
 // GET new (COMPLETE)
 router.get('/new', (req, res) => {
-    db.user.findOne( {
-        where: {
-            name: req.user.name
-        }
-    }).then(function(foundUser){
-        res.render('new', {user: foundUser})
-    })
+    res.render('new')
 })
     
 
 // POST new  (COMPLETE)
 router.post('/new', async (req, res) => {
     try {
-        const foundUser = await db.user.findOne({
-            where: {
-                name: req.user.name
-            }
-        })
-        const newLocationPost = await db.location.findOrCreate({
-            where: {
-                country: req.body.country, 
-                city: req.body.city
-            }
-        })
-        const newSitePost = await db.site.findOrCreate({
-            where: {
-                type: req.body.type,
-                name: req.body.name
-            }
-        })
+        const foundUser = req.user
         const newPost = await db.post.create({
             userId: foundUser.id,
-            locationId: newLocationPost[0].dataValues.id,
-            siteId: newSitePost[0].dataValues.id,
+            cityName: req.body.cityName,
+            countryName: req.body.countryName,
+            regionName: req.body.regionName,
+            siteName: req.body.siteName,
             date: req.body.date,
             content: req.body.content,
             type: req.body.type
         })
-        res.redirect(`profile/${foundUser.name}`)
+        res.redirect(`profile/${foundUser.username}`)
     } catch (error) {
         console.log(error)
         res.send("Error")
@@ -191,27 +144,36 @@ router.post('/new', async (req, res) => {
 })
 
 
+// EDIT post
+router.get('/post/:id/edit', (req, res) => {
+    db.post.findByPk(req.params.id)
+    .then(function(foundPost){
+        console.log(foundPost)
+        res.render('edit', {post: foundPost})
+    })
+})
+
+router.put('/post/:id/edit', (req, res) => {
+    db.post.update(req.body, {
+        where: {
+            id: req.params.id
+        }
+    }).then(function(updatedPost) {
+        res.redirect(`/profile/${req.user.username}`)
+    })
+})
+
+
 //DELETE post
-router.delete('/profile/:name', (req, res) => {
+router.delete('/post/:id', (req, res) => {
     db.post.destroy({
         where: {
             id: req.params.id
         }
     }).then(function(deletedPost) {
-        res.redirect('/profile/:name')
+        res.redirect(`/profile/${req.user.username}`)
     })
 })
-
-router.put('/edit/:id', (req, res) => {
-    db.post.update({
-        where: {
-            id: req.params.id
-        }
-    }).then(function(updatedPost) {
-        res.redirect('/profile/:name')
-    })
-})
-
 
 // export router
 module.exports = router;

@@ -1,9 +1,26 @@
-<h2>The Page is for editing a post</h2>
-<h3>we will need to load the page with the content form the post into a form to post later.</h3>
+<h2>EDIT POST</h2>
+<h3>we will need a form to collect the info, title, text , and location</h3>
 
-<h4><%= post[i].title %></h4>
-<!-- <h6><%= (site name) %></h6> -->
-<!-- <h6><%= (location city, location country) %></h6> -->
-<p><%= post[i].text %></p> 
-<button class="" type="submit">Submit Post</button>
-<button class="" type="delete">Delete Post</button>
+<form action="/post/<%= post.id %>/edit?_method=PUT" method="POST">
+
+    <label for="new-country">Country</label>
+    <input value="<%= post.countryName %>" class="input" id="new-country" type="text" name="countryName">
+    
+    <label class="label" for="new-city">City</label>
+    <input value="<%= post.cityName %>" class="input" id="new-city" type="text" name="cityName">
+
+    <label class="label" for="new-region">Region</label>
+    <input value="<%= post.regionName %>" class="input" id="new-region" type="text" name="regionName">
+
+    <label for="site-type">Location Type</label>
+    <input value="<%= post.type %>" class="input" id="site-type" type="text" name="type">
+
+    <label for="site-name">Site</label>
+    <input value="<%= post.siteName %>" class="input" id="site-name" type="text" name="siteName">
+
+    <label for="new-content">Content</label>
+    <input value="<%= post.content %>" class="input" id="new-content" type="text" name="content">
+    
+    <button class="button" type="submit">Submit</button>
+
+</form>

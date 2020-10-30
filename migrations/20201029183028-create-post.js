@@ -11,11 +11,17 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER
       },
-      locationId: {
-        type: Sequelize.INTEGER
+      cityName: {
+        type: Sequelize.STRING
       },
-      siteId: {
-        type: Sequelize.INTEGER
+      countryName: {
+        type: Sequelize.STRING
+      },
+      regionName: {
+        type: Sequelize.STRING
+      },
+      siteName: {
+        type: Sequelize.STRING
       },
       date: {
         type: Sequelize.DATE
