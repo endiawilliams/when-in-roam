@@ -15,8 +15,23 @@ A community-driven travel blog, where explorers can share their experiences, tog
 * On the user's profile page, users will be able to edit or delete any of their entries.
 * With "Regions", users can select a specific region to explore all posts.
 
+### Design Approach
 
-### What it includes
+#### ERD Database
+
+We created a one-to-many Entity Relationship Diagram to help with our planning. One model for users and one model for posts that includes location and content information.
+
+![ERD](./public/images/ERD.png)
+
+#### Wireframes
+
+These wireframes helped us to navigate and create routes and views and collectively design how we wanted our application to be used.
+
+![wireframes](./public/images/wheninroamWireframes.png)
+
+### Technologies
+
+#### What it includes
 
 * Sequelize user model / migration
 * Settings for PostgreSQL
@@ -26,18 +41,7 @@ A community-driven travel blog, where explorers can share their experiences, tog
 * Passwords that are hashed with BCrypt
 * EJS Templating and EJS Layouts
 
-### User Model
-
-| Column Name | Data Type | Notes |
-| --------------- | ------------- | ------------------------------ |
-| id | Integer | Serial Primary Key, Auto-generated |
-| name | String | Must be provided |
-| email | String | Must be unique / used for login |
-| password | String | Stored as a hash |
-| createdAt | Date | Auto-generated |
-| updatedAt | Date | Auto-generated |
-
-### Default Routes
+#### Default Routes
 
 | Method | Path | Location | Purpose |
 | ------ | ---------------- | -------------- | ------------------- |
