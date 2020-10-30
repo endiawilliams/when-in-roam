@@ -10,6 +10,7 @@ router.get('/about', (req, res) => {
 
 
 // GET region (COMPLETE)
+
 router.get('/region/:regionName', (req, res) => {
     let selectedRegion = req.params.regionName
     let capitalizedRegion = selectedRegion.charAt(0).toUpperCase()+selectedRegion.slice(1)
@@ -17,7 +18,6 @@ router.get('/region/:regionName', (req, res) => {
     if (capitalizedRegion === "Northamerica" || capitalizedRegion === "Southamerica") {
         capitalizedRegion = capitalizedRegion.replace("america", " America")
     } 
-
         db.post.findAll({
             where: {
                 regionName: capitalizedRegion

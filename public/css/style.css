@@ -2900,10 +2900,15 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  border-bottom: 2px solid #B39479;
 }
 
-.button {
+.button--transparent {
   color: #8BACB3;
+}
+
+#loginBtn, #signupBtn {
+  background-color: #8BACB3;
 }
 
 .leftNav ul {
@@ -2920,6 +2925,10 @@ body {
   margin: 5px;
 }
 
+#new-content {
+  height: 200px;
+}
+
 .navLogo {
   margin: 5px;
 }
@@ -2932,17 +2941,42 @@ h2 {
   color: #B39479;
 }
 
-.megaAbout {
-  background-image: url("../images/undraw_trip_dv9f.svg");
+#regionName {
+  font-size: 30px;
+  font-weight: bolder;
+  margin-top: 20px;
 }
 
-.aboutPage {
+.aboutContatiner {
+  max-width: 700px;
+}
+
+.aboutTitle {
+  font-size: 2.5em;
+  font-weight: bold;
+  margin: 10px;
+}
+
+.posts-container {
+  width: auto;
+  background-color: #FFEFE0;
+  color: #B39479;
+  border: 2px solid #B39479;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.login-div {
+  width: 400px;
   text-align: center;
 }
 
-.aboutText {
-  font-size: 20px;
-  color: #B39479;
-  margin-top: 100px;
+.udBtns {
+  display: inline;
+}
+
+.label {
+  font-size: 12px;
+  text-align: left;
 }
 /*# sourceMappingURL=style.css.map */

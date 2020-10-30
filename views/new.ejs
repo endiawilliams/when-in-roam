@@ -1,29 +1,28 @@
-<h2>NEW POST</h2>
-<h3>we will need a form to collect the info, title, text , and location</h3>
-
+<div class="container posts-container">
 <form action="/new" method="POST">
 
-    <label for="new-country">Country</label>
-    <input id="new-country" type="text" name="countryName">
+    <label class="label" for="new-country">Country</label>
+    <input class="input input-fullWidth" id="new-country" type="text" name="countryName">
     
     <label class="label" for="new-city">City</label>
-    <input class="input" id="new-city" type="text" name="cityName">
+    <input class="input input-fullWidth"  id="new-city" type="text" name="cityName">
 
     <label class="label" for="new-region">Region</label>
-    <input class="input" id="new-region" type="text" name="regionName">
+    <input class="input input-fullWidth" id="new-region" type="text" name="regionName">
 
-    <label for="site-type">Location Type</label>
-    <input id="site-type" type="text" name="type">
+    <label class="label" for="site-type">Location Type</label>
+    <input class="input input-fullWidth" id="site-type" type="text" name="type">
 
-    <label for="site-name">Site</label>
-    <input id="site-name" type="text" name="siteName">
+    <label class="label" for="site-name">Site</label>
+    <input class="input input-fullWidth" id="site-name" type="text" name="siteName">
     
-    <label for="date">Date</label>
-    <input id="date" type="date" name="date">
+    <label class="label" for="date">Date</label>
+    <input class="input input-fullWidth" id="date" type="date" name="date">
 
-    <label for="new-content">Content</label>
-    <input id="new-content" type="text" name="content">
-    
-    <button class="button" type="submit">Submit</button>
+    <label class="label" for="new-content">Content</label>
+    <textarea  id="new-content" class="textarea textarea-fullWidth" type="text" name="content"></textarea>
+    <br/>
+    <button class="button button--small button--transparent" type="submit">Submit</button>
 
 </form>
+</div>
