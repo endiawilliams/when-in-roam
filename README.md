@@ -1,8 +1,22 @@
-# Express Authentication
+# When In Roam
 
-Express authentication template using Passport + flash messages + custom middleware
+### About
 
-## What it includes
+A community-driven travel blog, where explorers can share their experiences, together. We encourage writers of all levels to share and grow while exploring the world. Whether it's your local coffee shop you stop by every morning or a bar you checked out while jet setting around the world, SHARE, GROW, EXPLORE!
+
+### Development Approach
+
+#### User Stories
+
+* The user lands on a homepage where they can click on an "About" page to learn what the application is used for, select from "Regions" to see what others have posted, and sign up or log in.
+* Once signed up and logged in, the user can create a new post by clicking on "New Post", go to their "Profile" page or click on "Regions" to explore posts from other users.
+* "New Post" will direct them to a page to enter Region, Country, City, Location Type, Site Name, Date and Content, and then hit submit.
+* Once user hits the "submit" button on their new post, the app will render their new entry and redirect them to their "Profile" page to see all of their own posts.
+* On the user's profile page, users will be able to edit or delete any of their entries.
+* With "Regions", users can select a specific region to explore all posts.
+
+
+### What it includes
 
 * Sequelize user model / migration
 * Settings for PostgreSQL
