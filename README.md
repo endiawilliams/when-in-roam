@@ -76,6 +76,8 @@ Special shoutout to the following individuals who helped us along the way:
 * Uyen Lam
 * Seanny Phoenix
 
+* [UnDraw](https://undraw.co/illustrations) - for about illustration
+
 ### Future Features
 
 * Free-form search
