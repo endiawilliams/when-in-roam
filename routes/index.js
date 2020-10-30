@@ -10,6 +10,7 @@ router.get('/about', (req, res) => {
 
 
 // GET region (COMPLETE)
+<<<<<<< HEAD
 router.get('/region/:regionName', (req, res) => {
     let selectedRegion = req.params.regionName
     let capitalizedRegion = selectedRegion.charAt(0).toUpperCase()+selectedRegion.slice(1)
@@ -43,34 +44,27 @@ router.get('/city/:id', (req, res) => {
         })
     })
 })
+=======
 
+router.get('/region/:regionName', (req, res) => {
+    let selectedRegion = req.params.regionName
+    let capitalizedRegion = selectedRegion.charAt(0).toUpperCase()+selectedRegion.slice(1)
+>>>>>>> submain
 
-// GET site (COMPLETE)
-router.get('/site/:id', (req, res) => {
-    let currentSite = req.params.id
-    db.site.findOne({
-        where: {
-            locationId: currentSite
-        }
-    }).then(function(foundSite) {
+    if (capitalizedRegion === "Northamerica" || capitalizedRegion === "Southamerica") {
+        capitalizedRegion = capitalizedRegion.replace("america", " America")
+    } 
         db.post.findAll({
             where: {
-                siteId: foundSite.dataValues.id
+                regionName: capitalizedRegion
             }
-        }).then(function(allSitePosts) {
-            db.location.findOne({
-                where: {
-                    id: allSitePosts[0].dataValues.locationId
-                }
-            }).then(function(foundLocation) {
-                res.render('site', {site: foundSite, posts: allSitePosts, location: foundLocation})
-            })
-        })
+        }).then(function(foundPosts){
+            res.render('region', {posts: foundPosts})
     })
 })
 
 
-// GET profile (COMPLETE? Need testing)
+// GET profile (COMPLETE)
 router.get('/profile/:username', async (req, res) => {
     const foundUser = req.user
     const allPosts = await db.post.findAll({
@@ -78,23 +72,7 @@ router.get('/profile/:username', async (req, res) => {
             userId: foundUser.dataValues.id
         }
     })
-    console.log('!!!!!!!!!!', allPosts)
     res.render('profile', {posts: allPosts});
-})
-
-
-// GET post  (COMPLETE? Need testing)
-    // returns user to edit page from profile or post page
-    // find postId
-    // render to edit.ejs
-router.get('/post/:id', (req, res) => {
-    db.post.findOne({
-        where: {
-            id: req.params.id
-        }
-    }).then(function(foundPost) {
-        res.render('post/:id', {post: foundPost})
-    })
 })
 
 
@@ -102,7 +80,7 @@ router.get('/post/:id', (req, res) => {
 router.get('/new', (req, res) => {
     res.render('new')
 })
-    
+
 
 // POST new  (COMPLETE)
 router.post('/new', async (req, res) => {
@@ -126,7 +104,7 @@ router.post('/new', async (req, res) => {
 })
 
 
-// EDIT post
+// GET edit (COMPLETE)
 router.get('/post/:id/edit', (req, res) => {
     db.post.findByPk(req.params.id)
     .then(function(foundPost){
@@ -135,6 +113,8 @@ router.get('/post/:id/edit', (req, res) => {
     })
 })
 
+
+// PUT edit (COMPLETE)
 router.put('/post/:id/edit', (req, res) => {
     db.post.update(req.body, {
         where: {
@@ -146,7 +126,7 @@ router.put('/post/:id/edit', (req, res) => {
 })
 
 
-//DELETE post
+//DELETE post (COMPLETE)
 router.delete('/post/:id', (req, res) => {
     db.post.destroy({
         where: {
@@ -157,5 +137,5 @@ router.delete('/post/:id', (req, res) => {
     })
 })
 
-// export router
+
 module.exports = router;
