@@ -12,16 +12,17 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       models.post.belongsTo(models.user)
-      models.post.belongsTo(models.location)
-      models.post.belongsTo(models.site)
     }
   };
   post.init({
     userId: DataTypes.INTEGER,
-    locationId: DataTypes.INTEGER,
-    siteId: DataTypes.INTEGER,
-    content: DataTypes.TEXT,
-    date: DataTypes.INTEGER
+    cityName: DataTypes.STRING,
+    countryName: DataTypes.STRING,
+    regionName: DataTypes.STRING,
+    siteName: DataTypes.STRING,
+    date: DataTypes.DATE,
+    type: DataTypes.STRING,
+    content: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'post',

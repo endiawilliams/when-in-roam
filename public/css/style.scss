@@ -1,0 +1,92 @@
+//framework
+@import 'custom-settings';
+@import '../../node_modules/sierra-library/lib/index.scss';
+
+//color theme veriables
+$bkgd : #FAFEFF;
+$ltblue: #E0FAFF;
+$drkblue: #8BACB3;
+$ltbrown: #FFEFE0;
+$drkbrown: #B39479;
+
+//
+body {
+    background-color: $bkgd;
+    font-family: sans-serif;
+
+}
+
+.headNav {
+    background-color: $ltbrown;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid $drkbrown;
+}
+
+.button--transparent{
+    color: $drkblue;
+}
+
+#loginBtn, #signupBtn{
+    background-color: $drkblue;
+}
+.leftNav ul {
+    display: flex;
+    margin: 5px;
+}
+
+.rightNav ul {
+    display: flex;
+    margin: 5px
+}
+#new-content {
+    height: 200px;
+}
+.navLogo {
+    margin: 5px;
+}
+h1 {
+    color: $drkblue;
+}
+
+h2 {
+    color: $drkbrown;
+}
+
+#regionName {
+    font-size: 30px;
+    font-weight: bolder;
+    margin-top: 20px;
+}
+
+.aboutContatiner {
+    max-width: 700px;
+}
+
+.aboutTitle {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin: 10px
+}
+
+.posts-container {
+    width: auto;
+    background-color: $ltbrown;
+    color:$drkbrown;
+    border: 2px solid $drkbrown;
+    margin: auto;
+    margin-top: 20px;
+}
+.login-div {
+    width: 400px;
+    text-align: center;
+}
+
+.udBtns {
+    display: inline;
+}
+
+.label {
+    font-size: 12px;
+    text-align: left;
+}

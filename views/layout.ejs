@@ -5,33 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>✧When In Roam✧</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
   </head>
   <body>
     <header>
-      <nav>
+      <div class="headNav">
+        <img class="navLogo" src="images/wir_logo.png" alt="logo" height="40px" href="/">
+      <nav class="leftNav">
         <ul>
-          <li><a href="/about">About</a></li>
-          <!-- <li><a href="/region">Region</a></li>
-          <li><a href="/city">City</a></li>
-          <li><a href="/site">Site</a></li>
-          <li><a href="/create">Create</a></li>
-          <li><a href="/edit">Edit</a></li>
-          <li><a href="/index">Homepage</a></li>
-          <li><a href="/profile">Profile</a></li> -->
+          <li><a class="button button--small button--transparent" href="/about">About</a></li>
+          <li><a class="button button--small button--transparent" href="/">Homepage</a></li>
+          <li><a class="button button--small button--transparent" href="/region">Posts</a></li>
+        </ul>
+      </nav>
+      <nav class="rightNav">
+        <ul>
           <% if (!currentUser) { %>
-            <li><a href="/auth/signup">Signup</a></li>
-            <li><a href="/auth/login">Login</a></li>
-          <% } else { %>
-            <li><a href="/auth/logout">Logout</a></li>
-            <li><a href="/profile">Profile</a></li>
-            <li><a href="/post">Posts</a></li>
-            <li><a href="/create">Create Post</a></li>
+            <li><a class="button button--small button--transparent" href="/auth/signup">Signup</a></li>
+            <li><a class="button button--small button--transparent" href="/auth/login">Login</a></li>
+            <% } else { %>
+              <li><a class="button button--small button--transparent" href="/new">New Post</a></li>
+            <li><a class="button button--small button--transparent" href="/profile/<%= currentUser.username %>">Profile</a></li>
+            <li><a class="button button--small button--transparent" href="/auth/logout">Logout</a></li>
           <% } %>
         </ul>
       </nav>
+    </div>
     </header>
-    <%- include('partials/alerts') %>
-    <h1>Authentication</h1>
-    <%- body %>
+
+
+      <%- body %>
+
+    
   </body>
 </html>
