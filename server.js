@@ -5,6 +5,7 @@ const session = require('express-session')
 const flash = require('connect-flash');
 const passport = require('./config/ppConfig');
 const isLoggedIn = require('./middleware/isLoggedIn');
+const methodOverride = require('method-override');
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -13,6 +14,7 @@ app.use(require('morgan')('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
 app.use(layouts);
+app.use(methodOverride('_method'));
 
 app.use(session({
   secret: process.env.SESSION_SECRET,

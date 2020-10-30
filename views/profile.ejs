@@ -1,19 +1,15 @@
 <h2>My Posts</h2>
-
 <h3>Welcome to your PROFILE</h3>
-
 <div class="posts-container">
-    <% for (let i = (posts.length-1); i>=0; i--) { %>
-        <div class="profile-post">
-            <h6><%= sites[i].name %></h6>
-            <h6><%= locations[i].city %>, <%= locations[i].country  %> </h6>
+    <div class="profile-post">
+    <% for (let i=posts.length-1; i>=0; i--) { %>
+            <h5><%= posts[i].siteName %></h5>
+            <h5><%= posts[i].cityName %>, <%= posts[i].countryName %></h5>
+            <h5><%= posts[i].regionName %></h5>
             <p><%= posts[i].date %></p> 
             <p><%= posts[i].content %></p> 
-           
-            <input type="hidden" name="postId" value="<%= posts[i].id %>">
-        
-            <button class="" type="update">Edit Post</button>
-            <button class="" type="delete">Delete Post</button>
-        </div>
+            <a class="button" href="/post/<%= posts[i].id %>/edit">Edit Post</a>
+            <form method="POST" action="/post/<%= posts[i].id %>?_method=DELETE"><button type="submit">Delete Post</button></form>
     <% } %>
+    </div>
 </div>

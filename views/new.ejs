@@ -1,23 +1,25 @@
 <h2>NEW POST</h2>
 <h3>we will need a form to collect the info, title, text , and location</h3>
 
-<!-- <form action="/profile/<%= user.name %>" method="POST"> -->
 <form action="/new" method="POST">
 
     <label for="new-country">Country</label>
-    <input id="new-country" type="text" name="country">
+    <input id="new-country" type="text" name="countryName">
     
     <label class="label" for="new-city">City</label>
-    <input class="input" id="new-city" type="text" name="city">
+    <input class="input" id="new-city" type="text" name="cityName">
+
+    <label class="label" for="new-region">Region</label>
+    <input class="input" id="new-region" type="text" name="regionName">
 
     <label for="site-type">Location Type</label>
     <input id="site-type" type="text" name="type">
 
     <label for="site-name">Site</label>
-    <input id="site-name" type="text" name="name">
+    <input id="site-name" type="text" name="siteName">
     
     <label for="date">Date</label>
-    <input id="date" type="number" name="date">
+    <input id="date" type="date" name="date">
 
     <label for="new-content">Content</label>
     <input id="new-content" type="text" name="content">
