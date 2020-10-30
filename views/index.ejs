@@ -1,14 +1,15 @@
-<h1>this is the index page.</h1>
-<h3>we start here</h3>
+<div class="container posts-container login-div">
+    <form action="/auth/login" method="POST">
+        <label class="label" for="auth-email">email</label>
+        <input class="input input-fullWidth" id="auth-email" type="email" name="email">
 
-<form action="/auth/login" method="POST">
-    <label for="auth-email">email</label>
-    <input id="auth-email" type="email" name="email">
-  
-    <label for="auth-password">password</label>
-    <input id="auth-password" type="password" name="password">
-  
-    <button type="submit" value="Log In">Log In</button>
-</form>
-<p>Don't have an account?</p> 
-<a href="/auth/signup" 
+        <label class="label" for="auth-password">password</label>
+        <input class="input input-fullWidth" id="auth-password" type="password" name="password">
+
+        <input class="button button--small button--primary" id="loginBtn" type="submit" value="Log In">
+    </form>
+    <div class="signupLink"></div>
+        <p>Don't have an account?</p>
+        <a class=" button button--small button--primary" id="signupBtn" href="/auth/signup">Sign up here.</a>
+</div>
+</div>

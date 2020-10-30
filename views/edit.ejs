@@ -1,26 +1,25 @@
-<h2>EDIT POST</h2>
-<h3>we will need a form to collect the info, title, text , and location</h3>
-
+<div class="container posts-container">
 <form action="/post/<%= post.id %>/edit?_method=PUT" method="POST">
 
-    <label for="new-country">Country</label>
-    <input value="<%= post.countryName %>" class="input" id="new-country" type="text" name="countryName">
+    <label class="label" for="new-country">Country</label>
+    <input class="input input-fullWidth" value="<%= post.countryName %>" class="input" id="new-country" type="text" name="countryName">
     
     <label class="label" for="new-city">City</label>
-    <input value="<%= post.cityName %>" class="input" id="new-city" type="text" name="cityName">
+    <input class="input input-fullWidth" value="<%= post.cityName %>" class="input" id="new-city" type="text" name="cityName">
 
     <label class="label" for="new-region">Region</label>
-    <input value="<%= post.regionName %>" class="input" id="new-region" type="text" name="regionName">
+    <input class="input input-fullWidth" value="<%= post.regionName %>" class="input" id="new-region" type="text" name="regionName">
 
-    <label for="site-type">Location Type</label>
-    <input value="<%= post.type %>" class="input" id="site-type" type="text" name="type">
+    <label class="label" for="site-type">Location Type</label>
+    <input class="input input-fullWidth" value="<%= post.type %>" class="input" id="site-type" type="text" name="type">
 
-    <label for="site-name">Site</label>
-    <input value="<%= post.siteName %>" class="input" id="site-name" type="text" name="siteName">
+    <label class="label" for="site-name">Site</label>
+    <input class="input input-fullWidth" value="<%= post.siteName %>" class="input" id="site-name" type="text" name="siteName">
 
-    <label for="new-content">Content</label>
-    <input value="<%= post.content %>" class="input" id="new-content" type="text" name="content">
+    <label class="label" for="new-content">Content</label>
+    <textarea  class="textarea textarea-fullWidth"  class="input" id="new-content" type="text" name="content"><%= post.content %></textarea>
     
-    <button class="button" type="submit">Submit</button>
+    <button class="button button--small button--transparent" type="submit">Submit</button>
 
 </form>
+</div>

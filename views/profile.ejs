@@ -1,17 +1,20 @@
-<h2>My Posts</h2>
-<h3>Welcome to your PROFILE</h3>
-<div class="container posts-container">
-    <div class="p-big border-bottom profile-post">
+
     <% for (let i=posts.length-1; i>=0; i--) { %>
-            <h5><%= posts[i].siteName %></h5>
-            <h5><%= posts[i].cityName %>, <%= posts[i].countryName %></h5>
-            <h5><%= posts[i].regionName %></h5>
-            <p><%= posts[i].date %></p> 
-            <div>
-            <p><%= posts[i].content %></p> 
+<div class="container posts-container">
+        <div class="text-left profile-post">
+        <h5><%= posts[i].siteName %></h5>
+        <h6><%= posts[i].cityName %>, <%= posts[i].countryName %>, <%= posts[i].regionName %></h6>
+        <p><%= posts[i].date %></p>
+        <div>
+            <p class="text-left"><%= posts[i].content %></p>
         </div>
-            <a class="class=“button button--small button--transparent" href="/post/<%= posts[i].id %>/edit">Edit Post</a>
+        <div class="udBtns">
+            <a class="button button--small button--transparent" href="/post/<%= posts[i].id %>/edit">Edit Post</a>
             <form method="POST" action="/post/<%= posts[i].id %>?_method=DELETE"><button class="button button--small button--transparent" type="submit">Delete Post</button></form>
-    <% } %>
+        </div>
     </div>
 </div>
+
+<% } %>
+
+
