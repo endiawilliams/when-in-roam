@@ -1,10 +1,14 @@
 <h1 class="text-center" id="regionName"><%= posts[0].dataValues.regionName %></h1>
-<% for (let i=0; i<posts.length; i++) { %>
-        <div class="container posts-container">
-    <h5><%= posts[i].dataValues.siteName %></h5>
-    <h5><%= posts[i].dataValues.cityName %>, <%= posts[i].dataValues.countryName %></h5>
-    <h5><%= posts[i].dataValues.regionName %></h5>
-    <p><%= posts[i].dataValues.date %></p>
-    <p><%= posts[i].dataValues.content %></p>
+
+<div id="map">
 </div>
+
+<% for (let i=0; i<posts.length; i++) { %>
+    <div class="container posts-container">
+        <h5><%= posts[i].dataValues.siteName %></h5>
+        <h5><%= posts[i].dataValues.cityName %>, <%= posts[i].dataValues.countryName %></h5>
+        <h5><%= posts[i].dataValues.regionName %></h5>
+        <p><%= posts[i].dataValues.date %></p>
+        <p><%= posts[i].dataValues.content %></p>
+    </div>
 <% } %>

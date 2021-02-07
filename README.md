@@ -29,9 +29,7 @@ These wireframes helped us to navigate and create routes and views and collectiv
 
 ![wireframes](./public/images/wheninroamWireframes.png)
 
-### Technologies
-
-#### What it includes
+#### Technologies
 
 * Sequelize user model / migration
 * Settings for PostgreSQL
@@ -39,7 +37,7 @@ These wireframes helped us to navigate and create routes and views and collectiv
 * Sessions to keep user logged in between pages
 * Passwords that are hashed with BCrypt
 * EJS Templating and EJS Layouts
-* Sierra-Library framework for CSS
+* Bootstrap
 * Sass
 
 #### Default Routes
